@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { supabase } from '../src/utils/supabaseClient';
 import AuthModal from './components/AuthModal';
 
@@ -11,6 +13,7 @@ type Message = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -133,28 +136,27 @@ export default function Home() {
       {/* Navbar */}
       <nav className="border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex flex-col items-center leading-none">
+          <Link href="/" className="flex flex-col items-center leading-none">
             <span className="text-xl font-black tracking-tight">APEX</span>
             <span className="text-[10px] font-bold tracking-[0.3em] text-blue-500">SYSTEMS</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex gap-8 text-sm font-medium text-zinc-400 uppercase tracking-wider">
-            <a href="#" className="hover:text-white transition">Gaming PCs</a>
-            <a href="#" className="hover:text-white transition">Workstations</a>
-            <a href="#" className="hover:text-white transition">Laptops</a>
-            <a href="#" className="hover:text-white transition">Support</a>
+            <Link href="/gaming-pcs" className="hover:text-white transition">Gaming PCs</Link>
+            <Link href="/workstations" className="hover:text-white transition">Workstations</Link>
+            <Link href="/laptops" className="hover:text-white transition">Laptops</Link>
+            <Link href="/support" className="hover:text-white transition">Support</Link>
           </div>
           
           <div className="flex gap-4 items-center">
             {user ? (
               <>
                 <button onClick={handleSignOut} className="text-zinc-400 hover:text-white text-sm font-bold uppercase tracking-wide transition">Sign Out</button>
-                <button className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Dashboard</button>
+                <button onClick={() => router.push('/dashboard')} className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Dashboard</button>
               </>
             ) : (
               <>
                 <button onClick={() => setIsAuthModalOpen(true)} className="text-zinc-400 hover:text-white text-sm font-bold uppercase tracking-wide transition">Sign In</button>
-                {/* FIX: Configure button now opens the Chat Widget */}
                 <button onClick={() => setIsChatOpen(true)} className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Configure</button>
               </>
             )}
@@ -270,7 +272,6 @@ export default function Home() {
       {/* The 24/7 AI Concierge Chat Widget */}
       {isChatOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-full max-w-md h-[600px] bg-zinc-900 rounded-2xl shadow-2xl border border-zinc-800 flex flex-col overflow-hidden">
-          {/* Chat Header */}
           <div className="bg-zinc-950 p-4 border-b border-zinc-800 flex justify-between items-center">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold">AI</div>
@@ -282,7 +283,6 @@ export default function Home() {
             <button onClick={() => setIsChatOpen(false)} className="text-zinc-500 hover:text-white text-xl">✕</button>
           </div>
 
-          {/* Chat Area */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-zinc-950">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -323,7 +323,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* Input Area */}
           <form onSubmit={handleSubmit} className="p-4 border-t border-zinc-800 flex gap-3 bg-zinc-950">
             <input
               value={input}
@@ -338,7 +337,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Floating Button (When closed) */}
       {!isChatOpen && (
         <button 
           onClick={() => setIsChatOpen(true)}
@@ -348,7 +346,6 @@ export default function Home() {
         </button>
       )}
 
-      {/* Auth Modal */}
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
     </div>
