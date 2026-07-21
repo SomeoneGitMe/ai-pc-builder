@@ -1,0 +1,9 @@
+[
+  { "id": "cpu1", "name": "AMD Ryzen 7 7800X3D", "category": "CPU", "price": 399, "specs": "8-Core, 16-Thread, 3D V-Cache. Best for gaming.", "stock": 5 },
+  { "id": "cpu2", "name": "Intel Core i7-14700K", "category": "CPU", "price": 409, "specs": "20-Core, 28-Thread. Great for gaming and productivity.", "stock": 8 },
+  { "id": "gpu1", "name": "NVIDIA RTX 4070 Ti Super", "category": "GPU", "price": 799, "specs": "16GB VRAM. Excellent for 1440p and entry 4K gaming.", "stock": 3 },
+  { "id": "gpu2", "name": "AMD Radeon RX 7900 XTX", "category": "GPU", "price": 999, "specs": "24GB VRAM. Great for 4K and Linux drivers.", "stock": 2 },
+  { "id": "ram1", "name": "Corsair Vengeance 32GB DDR5 6000MHz", "category": "RAM", "price": 120, "specs": "Low latency CL30. Sweet spot for AMD CPUs.", "stock": 15 },
+  { "id": "mb1", "name": "ASUS ROG Strix B650-A Gaming Wifi", "category": "Motherboard", "price": 229, "specs": "AM5 Socket, DDR5, PCIe 5.0. Great AMD foundation.", "stock": 6 },
+  { "id": "mb2", "name": "MSI MAG Z790 Tomahawk WiFi", "category": "Motherboard", "price": 279, "specs": "LGA 1700 Socket, DDR5. Great Intel foundation.", "stock": 4 }
+]
