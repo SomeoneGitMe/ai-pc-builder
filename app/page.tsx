@@ -52,6 +52,35 @@ export default function Home() {
     setUser(null);
   };
 
+  const handleAddToCart = async (part: any) => {
+    if (!user) {
+      alert("Please sign in to save your build.");
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('saved_builds')
+        .insert([
+          { 
+            user_id: user.id, 
+            build_name: part.name, 
+            components: part, 
+            total_price: part.price 
+          }
+        ]);
+
+      if (error) {
+        alert("Error saving build: " + error.message);
+      } else {
+        alert(`${part.name} added to your saved builds!`);
+      }
+    } catch (err) {
+      console.error("Supabase insert error:", err);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -125,7 +154,8 @@ export default function Home() {
             ) : (
               <>
                 <button onClick={() => setIsAuthModalOpen(true)} className="text-zinc-400 hover:text-white text-sm font-bold uppercase tracking-wide transition">Sign In</button>
-                <button onClick={() => setIsAuthModalOpen(true)} className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Configure</button>
+                {/* FIX: Configure button now opens the Chat Widget */}
+                <button onClick={() => setIsChatOpen(true)} className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Configure</button>
               </>
             )}
           </div>
@@ -276,7 +306,7 @@ export default function Home() {
                             </div>
                             <div className="flex flex-col items-end justify-between">
                               <span className="text-sm font-bold text-green-400">${part.price}</span>
-                              <button className="bg-blue-600 hover:bg-blue-700 text-xs px-2 py-1 rounded font-semibold">Add</button>
+                              <button onClick={() => handleAddToCart(part)} className="bg-blue-600 hover:bg-blue-700 text-xs px-2 py-1 rounded font-semibold">Add</button>
                             </div>
                           </div>
                         );
