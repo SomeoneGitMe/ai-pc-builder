@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🛒 Apex Systems | AI-Powered E-Commerce Platform
+A production-grade e-commerce storefront designed to prove that AI agents can seamlessly replace traditional retail sales consultants. Instead of browsing static filters, users interact with a 24/7 AI Architect that analyzes their needs, budget, and workflow to engineer the perfect custom PC and build their cart in real-time.
 
-## Getting Started
+🧠 Core Architecture & Features
+AI Sales Consultant (Groq / Llama 3.3): A floating, persistent chat widget that acts as an enterprise sales rep. It uses LLM Function Calling to parse user intent, check hardware compatibility rules, and return strict JSON product recommendations.
+Full-Stack Auth & Database (Supabase): Implemented secure user authentication and a PostgreSQL database with Row Level Security (RLS). Users can sign up, log in, and save AI-generated builds directly to their profile.
+Dynamic E-Commerce UI: A premium, dark-mode storefront inspired by iBuyPower/Newegg. Features fully responsive category pages (Gaming PCs, Workstations, Laptops) with working sidebar filters (React State management for Price/Brand/GPU filtering).
+AI-Augmented Development: Architected and deployed in a rapid, AI-augmented workflow. Utilized multi-agent orchestration for system design, debugging, and deployment, proving the ability to ship full-stack applications 10x faster than traditional development cycles.
 
-First, run the development server:
+🛠 Tech Stack
+Frontend: Next.js 14 (App Router), React, Tailwind CSS, TypeScript
+Backend: Next.js Serverless API Routes
+Database & Auth: Supabase (PostgreSQL)
+AI/LLM: Groq (Llama-3.3-70b) with native JSON mode parsing
+Deployment: Vercel (Ready for Deployment)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+💻 Engineering Highlights
+Resilient LLM Parsing: Implemented bulletproof JSON extraction logic to handle LLM response variance, ensuring zero frontend crashes during AI generation.
+State Synchronization: Managed complex React state for cross-component UI updates (e.g., AI chat bubble opening from multiple CTA buttons across different page layouts).
+Security First Approach: Enforced database-level security using Supabase Row Level Security (RLS) so users can only access their own saved builds. API keys are strictly handled server-side via Next.js environment variables.
+Rapid Prototyping: Demonstrated the power of AI-orchestrated development by taking a complex, multi-page e-commerce platform from zero to fully functional in a matter of hours.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🚀 Live Demo
+URL: [Insert your Vercel URL here once deployed]
