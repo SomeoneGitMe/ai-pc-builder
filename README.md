@@ -23,3 +23,19 @@ A production-grade e-commerce storefront designed to prove that AI agents can se
 
 🚀 Live Demo
 URL: (https://ai-pc-builder-blush.vercel.app/)
+
+🧠 Custom LLM Fine-Tuning (Proof of Work)
+To prove AI engineering capabilities beyond standard API wrappers, a custom Llama-3-8B model was fine-tuned via QLoRA (Quantized Low-Rank Adaptation) on a synthetic dataset of PC-building conversations. The model was trained on Google Colab's T4 GPU and deployed to the HuggingFace Hub.
+
+Note: To ensure zero-latency and 100% uptime for this live demo without incurring GPU hosting costs, the production API is routed to Groq's Llama-3.3 endpoint. However, the custom model is fully trained and available for review.
+
+Custom Model Link: (https://huggingface.co/SomeoneGitMe)
+
+2. On your TradeRisk GitHub README.md
+Add the exact same section, but swap the link for your TradeRisk model (jarvis-llama3-trader).
+
+3. On your Wellfound Profile
+In the "Projects" section, where you list TradeRisk and Apex Systems, add a bullet point under each:
+
+- "Fine-tuned a proprietary Llama-3-8B model via QLoRA on HuggingFace to power the AI risk engine."
+When a recruiter clicks your HuggingFace profile, they will see two custom models sitting there with your name on them. That is the moment the checkbook comes out. Go drop those links in your READMEs right now!
