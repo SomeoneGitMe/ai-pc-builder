@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import ChatBubble from '../components/ChatBubble';
+import Footer from '../components/Footer';
 
 const allWorkstations = [
   { id: 1, name: "Apex Compile", brand: "Intel", cpu: "Intel Core i9-14900K", gpu: "NVIDIA RTX A2000", ram: "64GB DDR5 6000MHz", storage: "2TB NVMe SSD", price: 2799, img: "https://content.ibuypower.com/cdn-cgi/image/width=256,format=auto,quality=85/https://content.ibuypower.com/Images/Components/32117/01-HYTE-X50-White-Main-400.png?v=3a6b3421d6c82306d9655f42ab70589bfdae5306" },
@@ -13,7 +15,6 @@ const allWorkstations = [
 ];
 
 export default function Workstations() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
   const [activeBrands, setActiveBrands] = useState<string[]>(['Intel', 'AMD']);
   const [maxPrice, setMaxPrice] = useState(10000);
 
@@ -43,11 +44,11 @@ export default function Workstations() {
             <Link href="/laptops" className="hover:text-white transition">Laptops</Link>
             <Link href="/support" className="hover:text-white transition">Support</Link>
           </div>
-          <button onClick={() => setIsChatOpen(true)} className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Configure</button>
+          <Link href="/apex-ai" className="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition shadow-lg shadow-blue-500/20">Configure</Link>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto w-full py-12 px-6 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
+      <div className="max-w-7xl mx-auto w-full py-12 px-6 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 flex-grow">
         <aside className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 h-fit lg:sticky lg:top-24">
           <h2 className="text-xl font-black uppercase mb-6 border-b border-zinc-800 pb-4">Filters</h2>
           <div className="mb-8">
@@ -85,7 +86,7 @@ export default function Workstations() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filteredPcs.map((pc) => (
               <div key={pc.id} className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-blue-800 transition group flex flex-col">
-                <div className="h-44 bg-zinc-800 relative overflow-hidden flex items-center justify-center p-4">
+                <div className="h-44 bg-zinc-900 relative overflow-hidden flex items-center justify-center p-4">
                   <img src={pc.img} alt={pc.name} className="absolute inset-0 w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-500" />
                 </div>
                 <div className="p-5 flex-grow flex flex-col">
@@ -98,7 +99,7 @@ export default function Workstations() {
                   </div>
                   <div className="flex justify-between items-center border-t border-zinc-800 pt-4 mt-4">
                     <span className="text-xl font-black text-blue-400">${pc.price.toLocaleString()}</span>
-                    <button onClick={() => setIsChatOpen(true)} className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition">Customize</button>
+                    <Link href={{ pathname: '/apex-ai', query: { preset: pc.name, price: pc.price } }} className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition">Customize</Link>
                   </div>
                 </div>
               </div>
@@ -106,6 +107,9 @@ export default function Workstations() {
           </div>
         </div>
       </div>
+
+      <Footer />
+      <ChatBubble />
     </div>
   );
 }

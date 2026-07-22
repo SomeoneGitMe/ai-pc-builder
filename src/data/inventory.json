@@ -1,9 +1,38 @@
 [
-  { "id": "cpu1", "name": "AMD Ryzen 7 7800X3D", "category": "CPU", "price": 399, "specs": "8-Core, 16-Thread, 3D V-Cache. Best for gaming.", "stock": 5 },
-  { "id": "cpu2", "name": "Intel Core i7-14700K", "category": "CPU", "price": 409, "specs": "20-Core, 28-Thread. Great for gaming and productivity.", "stock": 8 },
-  { "id": "gpu1", "name": "NVIDIA RTX 4070 Ti Super", "category": "GPU", "price": 799, "specs": "16GB VRAM. Excellent for 1440p and entry 4K gaming.", "stock": 3 },
-  { "id": "gpu2", "name": "AMD Radeon RX 7900 XTX", "category": "GPU", "price": 999, "specs": "24GB VRAM. Great for 4K and Linux drivers.", "stock": 2 },
-  { "id": "ram1", "name": "Corsair Vengeance 32GB DDR5 6000MHz", "category": "RAM", "price": 120, "specs": "Low latency CL30. Sweet spot for AMD CPUs.", "stock": 15 },
-  { "id": "mb1", "name": "ASUS ROG Strix B650-A Gaming Wifi", "category": "Motherboard", "price": 229, "specs": "AM5 Socket, DDR5, PCIe 5.0. Great AMD foundation.", "stock": 6 },
-  { "id": "mb2", "name": "MSI MAG Z790 Tomahawk WiFi", "category": "Motherboard", "price": 279, "specs": "LGA 1700 Socket, DDR5. Great Intel foundation.", "stock": 4 }
+  { "id": "cpu1", "name": "AMD Ryzen 5 5600", "category": "CPU", "price": 115, "specs": "6-Core, 12-Thread. Budget gaming king.", "stock": 20 },
+  { "id": "cpu2", "name": "Intel Core i5-12400F", "category": "CPU", "price": 130, "specs": "6-Core, 12-Thread. Great budget Intel option.", "stock": 15 },
+  { "id": "cpu3", "name": "AMD Ryzen 5 7600X", "category": "CPU", "price": 199, "specs": "6-Core, 12-Thread, AM5. Excellent mid-range.", "stock": 10 },
+  { "id": "cpu4", "name": "Intel Core i7-14700K", "category": "CPU", "price": 409, "specs": "20-Core, 28-Thread. High-end gaming/productivity.", "stock": 8 },
+  { "id": "cpu5", "name": "AMD Ryzen 9 7950X3D", "category": "CPU", "price": 599, "specs": "16-Core, 32-Thread, 3D V-Cache. Ultimate gaming.", "stock": 5 },
+  
+  { "id": "mb1", "name": "MSI B550-A PRO", "category": "Motherboard", "price": 90, "specs": "AM4 Socket, DDR4. Budget AMD foundation.", "stock": 12 },
+  { "id": "mb2", "name": "ASRock B660M", "category": "Motherboard", "price": 85, "specs": "LGA 1700 Socket, DDR4. Budget Intel foundation.", "stock": 14 },
+  { "id": "mb3", "name": "ASUS ROG Strix B650-A", "category": "Motherboard", "price": 229, "specs": "AM5 Socket, DDR5. High-end AMD.", "stock": 6 },
+  { "id": "mb4", "name": "MSI MAG Z790 Tomahawk", "category": "Motherboard", "price": 279, "specs": "LGA 1700 Socket, DDR5. High-end Intel.", "stock": 4 },
+  
+  { "id": "gpu1", "name": "AMD Radeon RX 7600", "category": "GPU", "price": 249, "specs": "8GB VRAM. Great for 1080p ultra.", "stock": 15 },
+  { "id": "gpu2", "name": "NVIDIA RTX 4060", "category": "GPU", "price": 299, "specs": "8GB VRAM. 1080p with DLSS 3.", "stock": 12 },
+  { "id": "gpu3", "name": "AMD Radeon RX 7700 XT", "category": "GPU", "price": 449, "specs": "12GB VRAM. Excellent 1440p.", "stock": 10 },
+  { "id": "gpu4", "name": "NVIDIA RTX 4070 Ti Super", "category": "GPU", "price": 799, "specs": "16GB VRAM. High-end 1440p/Entry 4K.", "stock": 5 },
+  { "id": "gpu5", "name": "AMD Radeon RX 7900 XTX", "category": "GPU", "price": 999, "specs": "24GB VRAM. Ultimate 4K gaming.", "stock": 3 },
+  { "id": "gpu6", "name": "NVIDIA RTX 4090", "category": "GPU", "price": 1799, "specs": "24GB VRAM. The absolute best.", "stock": 2 },
+  
+  { "id": "ram1", "name": "Corsair Vengeance 16GB DDR4 3200MHz", "category": "RAM", "price": 40, "specs": "Budget DDR4.", "stock": 30 },
+  { "id": "ram2", "name": "TEAMGROUP 16GB DDR5 5200MHz", "category": "RAM", "price": 55, "specs": "Entry DDR5.", "stock": 25 },
+  { "id": "ram3", "name": "Corsair Vengeance 32GB DDR5 6000MHz", "category": "RAM", "price": 120, "specs": "Low latency CL30. Sweet spot for AMD/Intel.", "stock": 15 },
+  { "id": "ram4", "name": "G.Skill Trident Z5 64GB DDR5 7200MHz", "category": "RAM", "price": 250, "specs": "Ultra-fast, high capacity.", "stock": 8 },
+  
+  { "id": "storage1", "name": "Crucial P3 500GB NVMe", "category": "Storage", "price": 40, "specs": "PCIe 3.0. Budget boot drive.", "stock": 40 },
+  { "id": "storage2", "name": "WD Black SN770 1TB NVMe", "category": "Storage", "price": 79, "specs": "PCIe 4.0, 5150 MB/s read. Great value.", "stock": 30 },
+  { "id": "storage3", "name": "Samsung 990 Pro 2TB NVMe", "category": "Storage", "price": 169, "specs": "PCIe 4.0, 7450 MB/s read. Top tier speed.", "stock": 20 },
+  { "id": "storage4", "name": "Samsung 990 Pro 4TB NVMe", "category": "Storage", "price": 299, "specs": "Massive ultra-fast storage.", "stock": 10 },
+  
+  { "id": "psu1", "name": "EVGA 600 W1 600W", "category": "Power Supply", "price": 50, "specs": "600W, 80+ White. Budget builds.", "stock": 20 },
+  { "id": "psu2", "name": "Corsair RM750e 750W 80+ Gold", "category": "Power Supply", "price": 99, "specs": "750W, Fully Modular. Mid-tier.", "stock": 15 },
+  { "id": "psu3", "name": "Corsair RM850e 850W 80+ Gold", "category": "Power Supply", "price": 124, "specs": "850W, ATX 3.0. High-end.", "stock": 12 },
+  { "id": "psu4", "name": "Seasonic Vertex GX-1000 1000W", "category": "Power Supply", "price": 189, "specs": "1000W, 80+ Gold. Extreme builds.", "stock": 8 },
+  
+  { "id": "case1", "name": "Montech AIR 100 ARGB", "category": "Case", "price": 60, "specs": "Micro-ATX, Mesh front, Great budget airflow.", "stock": 25 },
+  { "id": "case2", "name": "NZXT H7 Flow", "category": "Case", "price": 109, "specs": "Mid Tower, Mesh front, Clean aesthetic.", "stock": 15 },
+  { "id": "case3", "name": "Lian Li O11 Dynamic EVO", "category": "Case", "price": 159, "specs": "Mid Tower, Tempered Glass, Premium showcase.", "stock": 10 }
 ]
