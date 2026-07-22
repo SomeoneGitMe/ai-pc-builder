@@ -22,4 +22,4 @@ A production-grade e-commerce storefront designed to prove that AI agents can se
 - Rapid Prototyping: Demonstrated the power of AI-orchestrated development by taking a complex, multi-page e-commerce platform from zero to fully functional in a matter of days.
 
 🚀 Live Demo
-URL: [Insert your Vercel URL here once deployed]
+URL: (https://ai-pc-builder-blush.vercel.app/)
