@@ -233,7 +233,7 @@ export default function ApexTerminalPage() {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Apex about macro events, risk exposure, or strategy..."
+              placeholder="Ask Apex to build your custom PC..."
               className="flex-1 bg-zinc-900 text-white px-4 py-3 rounded-xl outline-none border border-zinc-800 focus:border-blue-500"
             />
             <button type="submit" disabled={isLoading} className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-semibold text-white disabled:opacity-50">
