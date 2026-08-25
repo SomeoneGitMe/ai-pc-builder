@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import inventoryData from '../../../src/data/inventory.json';
+import { getDynamicModel } from '@/lib/ai-router';
 
 const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY!,
@@ -49,8 +50,11 @@ export async function POST(req: NextRequest) {
       ...recentMessages
     ];
 
+    // Dynamic model fetch to prevent 404 deprecation errors
+    const modelId = await getDynamicModel();
+
     const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: modelId, // Injected dynamic model
       messages: fullMessages,
       response_format: { type: "json_object" },
       temperature: 0.4,
