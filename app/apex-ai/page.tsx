@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { supabase } from '../../src/utils/supabaseClient';
+import inventoryData from '@/data/inventory.json';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -103,10 +104,16 @@ export default function ApexTerminalPage() {
       });
       const data = await res.json();
       
-      if (data.reply) {
-        syncChat([...newMessages, { role: 'assistant', content: data.reply, recommendations: data.recommendations }]);
+      // FIX: Check for reply OR recommendations to prevent false error triggers
+      if (data.reply || (data.recommendations && data.recommendations.length > 0)) {
+        const assistantMsg: Message = {
+          role: 'assistant',
+          content: data.reply || "Here is the build I recommend based on your budget:",
+          recommendations: data.recommendations || []
+        };
+        syncChat([...newMessages, assistantMsg]);
       } else {
-        syncChat([...newMessages, { role: 'assistant', content: "Sorry, I encountered an error." }]);
+        syncChat([...newMessages, { role: 'assistant', content: data.error || "Sorry, I couldn't process that." }]);
       }
     } catch (error) {
       console.error('Chat fetch error:', error);
@@ -167,39 +174,8 @@ export default function ApexTerminalPage() {
                   {m.recommendations && m.recommendations.length > 0 && (
                     <div className="mt-4 space-y-3">
                       {m.recommendations.map((rec: any, idx: number) => {
-                        const inventory = [
-                          { "id": "cpu1", "name": "AMD Ryzen 5 5600", "category": "CPU", "price": 115, "specs": "6-Core, 12-Thread." },
-                          { "id": "cpu2", "name": "Intel Core i5-12400F", "category": "CPU", "price": 130, "specs": "6-Core, 12-Thread." },
-                          { "id": "cpu3", "name": "AMD Ryzen 5 7600X", "category": "CPU", "price": 199, "specs": "6-Core, 12-Thread, AM5." },
-                          { "id": "cpu4", "name": "Intel Core i7-14700K", "category": "CPU", "price": 409, "specs": "20-Core, 28-Thread." },
-                          { "id": "cpu5", "name": "AMD Ryzen 9 7950X3D", "category": "CPU", "price": 599, "specs": "16-Core, 32-Thread." },
-                          { "id": "mb1", "name": "MSI B550-A PRO", "category": "Motherboard", "price": 90, "specs": "AM4 Socket, DDR4." },
-                          { "id": "mb2", "name": "ASRock B660M", "category": "Motherboard", "price": 85, "specs": "LGA 1700 Socket, DDR4." },
-                          { "id": "mb3", "name": "ASUS ROG Strix B650-A", "category": "Motherboard", "price": 229, "specs": "AM5 Socket, DDR5." },
-                          { "id": "mb4", "name": "MSI MAG Z790 Tomahawk", "category": "Motherboard", "price": 279, "specs": "LGA 1700 Socket, DDR5." },
-                          { "id": "gpu1", "name": "AMD Radeon RX 7600", "category": "GPU", "price": 249, "specs": "8GB VRAM." },
-                          { "id": "gpu2", "name": "NVIDIA RTX 4060", "category": "GPU", "price": 299, "specs": "8GB VRAM." },
-                          { "id": "gpu3", "name": "AMD Radeon RX 7700 XT", "category": "GPU", "price": 449, "specs": "12GB VRAM." },
-                          { "id": "gpu4", "name": "NVIDIA RTX 4070 Ti Super", "category": "GPU", "price": 799, "specs": "16GB VRAM." },
-                          { "id": "gpu5", "name": "AMD Radeon RX 7900 XTX", "category": "GPU", "price": 999, "specs": "24GB VRAM." },
-                          { "id": "gpu6", "name": "NVIDIA RTX 4090", "category": "GPU", "price": 1799, "specs": "24GB VRAM." },
-                          { "id": "ram1", "name": "Corsair Vengeance 16GB DDR4", "category": "RAM", "price": 40, "specs": "3200MHz." },
-                          { "id": "ram2", "name": "TEAMGROUP 16GB DDR5", "category": "RAM", "price": 55, "specs": "5200MHz." },
-                          { "id": "ram3", "name": "Corsair Vengeance 32GB DDR5", "category": "RAM", "price": 120, "specs": "6000MHz CL30." },
-                          { "id": "ram4", "name": "G.Skill Trident Z5 64GB DDR5", "category": "RAM", "price": 250, "specs": "7200MHz." },
-                          { "id": "storage1", "name": "Crucial P3 500GB NVMe", "category": "Storage", "price": 40, "specs": "PCIe 3.0." },
-                          { "id": "storage2", "name": "WD Black SN770 1TB NVMe", "category": "Storage", "price": 79, "specs": "PCIe 4.0." },
-                          { "id": "storage3", "name": "Samsung 990 Pro 2TB NVMe", "category": "Storage", "price": 169, "specs": "PCIe 4.0." },
-                          { "id": "storage4", "name": "Samsung 990 Pro 4TB NVMe", "category": "Storage", "price": 299, "specs": "Massive storage." },
-                          { "id": "psu1", "name": "EVGA 600 W1 600W", "category": "Power Supply", "price": 50, "specs": "600W, 80+ White." },
-                          { "id": "psu2", "name": "Corsair RM750e 750W", "category": "Power Supply", "price": 99, "specs": "750W, 80+ Gold." },
-                          { "id": "psu3", "name": "Corsair RM850e 850W", "category": "Power Supply", "price": 124, "specs": "850W, ATX 3.0." },
-                          { "id": "psu4", "name": "Seasonic Vertex GX-1000", "category": "Power Supply", "price": 189, "specs": "1000W, 80+ Gold." },
-                          { "id": "case1", "name": "Montech AIR 100 ARGB", "category": "Case", "price": 60, "specs": "Micro-ATX, Mesh front." },
-                          { "id": "case2", "name": "NZXT H7 Flow", "category": "Case", "price": 109, "specs": "Mid Tower, Mesh front." },
-                          { "id": "case3", "name": "Lian Li O11 Dynamic EVO", "category": "Case", "price": 159, "specs": "Mid Tower, Tempered Glass." }
-                        ];
-                        const part = inventory.find(p => p.id === rec.id);
+                        // FIX: Using imported inventoryData instead of hardcoded array
+                        const part = inventoryData.find((p: any) => p.id === rec.id);
                         if (!part) return null;
                         return (
                           <div key={idx} className="bg-zinc-950 border border-zinc-700 rounded-lg p-3 flex gap-3 items-center">
